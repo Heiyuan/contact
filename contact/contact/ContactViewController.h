@@ -10,6 +10,6 @@
 
 @interface ContactViewController : UIViewController
 
-@property (nonatomic, strong) NSArray *contactArray;
+@property (nonatomic, strong) NSMutableArray *contactArray;
 
 @end

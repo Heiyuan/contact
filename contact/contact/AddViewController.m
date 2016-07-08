@@ -10,6 +10,7 @@
 #import "IQKeyboardManager.h"
 #import "People.h"
 #import "ContactViewController.h"
+#import <pop/POP.h>
 
 typedef NS_ENUM(NSUInteger, ShopStyle) {
     ShopStyleNew = 0,
@@ -18,6 +19,9 @@ typedef NS_ENUM(NSUInteger, ShopStyle) {
 
 @interface AddViewController () <UITextFieldDelegate>
 
+@property (weak, nonatomic) IBOutlet UIView *nameBackView;
+@property (weak, nonatomic) IBOutlet UIView *phoneBackView;
+@property (weak, nonatomic) IBOutlet UIView *doubleButtonBackView;
 @property (weak, nonatomic) IBOutlet UITextField *nameTextField;
 @property (weak, nonatomic) IBOutlet UITextField *phoneTextField;
 @property (weak, nonatomic) IBOutlet UIButton *buttonNew;
@@ -40,59 +44,57 @@ typedef NS_ENUM(NSUInteger, ShopStyle) {
 }
 
 - (void)setSubViews {
+    _nameBackView.layer.cornerRadius = 5.f;
+    _phoneBackView.layer.cornerRadius = 5.f;
+    _doubleButtonBackView.layer.cornerRadius = 5.f;
+    _doubleButtonBackView.layer.masksToBounds = YES;
+    _buttonConfirm.layer.cornerRadius = 5.f;
+    _buttonConfirm.layer.masksToBounds = YES;
+    
     _nameTextField.returnKeyType = UIReturnKeyNext;
     _nameTextField.delegate = self;
+    _phoneTextField.returnKeyType = UIReturnKeyDone;
     _phoneTextField.delegate = self;
     
     [_buttonNew setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
     [_buttonNew addTarget:self action:@selector(buttonSelect:) forControlEvents:UIControlEventTouchUpInside];
     [_buttonOld setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
     [_buttonOld addTarget:self action:@selector(buttonSelect:) forControlEvents:UIControlEventTouchUpInside];
-    
     [_buttonConfirm addTarget:self action:@selector(confirmButtonSelect) forControlEvents:UIControlEventTouchUpInside];
     [_buttonContact addTarget:self action:@selector(presentContactVC) forControlEvents:UIControlEventTouchUpInside];
     
-
     _shopStyle = ShopStyleNew;
     _buttonNew.selected = YES;
     _buttonNew.userInteractionEnabled = NO;
     _buttonNew.backgroundColor = BLUECOLOR;
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
 - (void)buttonSelect:(UIButton *)button {
     if (button.selected) {
         return;
     }
-    button.selected = !button.selected;
-    if (button.selected && [button isEqual:_buttonNew]) {
+    button.selected = YES;
+    button.backgroundColor = BLUECOLOR;
+    if ([button isEqual:_buttonNew]) {
         _buttonNew.userInteractionEnabled = NO;
         _buttonOld.userInteractionEnabled = YES;
         _buttonOld.selected = NO;
         _buttonOld.backgroundColor = [UIColor whiteColor];
         _shopStyle = ShopStyleNew;
         
-    } else if(button.selected && [button isEqual:_buttonOld]) {
+    } else {
         _buttonOld.userInteractionEnabled = NO;
         _buttonNew.userInteractionEnabled = YES;
         _buttonNew.selected = NO;
         _buttonNew.backgroundColor = [UIColor whiteColor];
         _shopStyle = ShopStyleOld;
     }
-    if (button.selected) {
-        button.backgroundColor = BLUECOLOR;
-    } else {
-        button.backgroundColor = [UIColor whiteColor];
-    }
 }
 
-- (void)clear {
-    _nameTextField.text = nil;
-    _phoneTextField.text = nil;
+- (BOOL)matchesPhoneRegEx {
+    NSString *phoneRegEx = @"^1[3|4|5|7|8][0-9]\\d{8}$";
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", phoneRegEx];
+    return [predicate evaluateWithObject:_phoneTextField.text];
 }
 
 - (void)addContact {
@@ -113,23 +115,44 @@ typedef NS_ENUM(NSUInteger, ShopStyle) {
     [NSKeyedArchiver archiveRootObject:originArray toFile:docPath];
 }
 
-- (void)showAlertWithMessage:(NSString *)message {
-    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"提示" message:message preferredStyle:UIAlertControllerStyleAlert];
+- (void)clear {
+    _nameTextField.text = nil;
+    _phoneTextField.text = nil;
+}
+
+- (void)showAlertWithTitle:(NSString *)title andMessage:(NSString *)message {
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:title message:message preferredStyle:UIAlertControllerStyleAlert];
     UIAlertAction *action = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:nil];
     [alertController addAction:action];
     [self presentViewController:alertController animated:YES completion:nil];
 }
 
+//MARK:确认按钮点击方法
 - (void)confirmButtonSelect {
-    if (_nameTextField.text.length >= 1 && _phoneTextField.text.length >= 1) {
-        NSLog(@"添加成功");
-        [self addContact];
-        [self showAlertWithMessage:@"添加成功"];
-        [self clear];
+    
+    POPSpringAnimation *animation = [POPSpringAnimation animationWithPropertyNamed:kPOPViewScaleXY];
+    animation.velocity = [NSValue valueWithCGSize:CGSizeMake(3.f, 3.f)];
+    animation.toValue = [NSValue valueWithCGSize:CGSizeMake(1.f, 1.f)];
+    animation.springBounciness = 18.0f;
+    [_buttonConfirm pop_addAnimation:animation forKey:nil];
+    
+    if (!_nameTextField.text.length && !_phoneTextField.text.length) {
+        [self showAlertWithTitle:@"添加失败" andMessage:@"姓名和电话号码不能为空"];
+    } else if (!_nameTextField.text.length && _phoneTextField.text.length && ![self matchesPhoneRegEx]) {
+        [self showAlertWithTitle:@"添加失败" andMessage:@"姓名不能为空，电话号码格式错误"];
+    } else if (!_nameTextField.text.length && _phoneTextField.text.length && [self matchesPhoneRegEx]) {
+        [self showAlertWithTitle:@"添加失败" andMessage:@"姓名不能为空"];
+    } else if (_nameTextField.text.length && !_phoneTextField.text.length) {
+        [self showAlertWithTitle:@"添加失败" andMessage:@"电话号码不能为空"];
+    } else if (_nameTextField.text.length && _phoneTextField.text.length && ![self matchesPhoneRegEx]) {
+        [self showAlertWithTitle:@"添加失败" andMessage:@"电话号码格式错误"];
     } else {
-        [self showAlertWithMessage:@"姓名和电话号码不能为空"];
+        [self showAlertWithTitle:@"提示" andMessage:@"添加成功"];
+        [self addContact];
+        [self clear];
     }
 }
+
 
 - (void)presentContactVC {
     //解档
@@ -137,11 +160,16 @@ typedef NS_ENUM(NSUInteger, ShopStyle) {
     NSString *path = [sandBox firstObject];
     NSString *docPath = [path stringByAppendingPathComponent:@"people.plist"];
     NSMutableArray *originArray = [NSMutableArray arrayWithArray:[NSKeyedUnarchiver unarchiveObjectWithFile:docPath]];
-    
+    //跳转
     ContactViewController *conVC = [[ContactViewController alloc] init];
     conVC.contactArray = originArray;
     [conVC setModalTransitionStyle:UIModalTransitionStylePartialCurl];
     [self presentViewController:conVC animated:YES completion:nil];
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
 }
 
 #pragma mark - UITextFieldDelegate

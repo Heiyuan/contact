@@ -31,6 +31,9 @@ static NSString *contactCell = @"ContactTableViewCell";
     _tableView.delegate = self;
     _tableView.dataSource = self;
     _tableView.tableFooterView = [UIView new];
+    _tableView.layer.cornerRadius = 10.f;
+    _tableView.layer.masksToBounds = YES;
+    _tableView.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:0.5];
     [_tableView registerNib:[UINib nibWithNibName:contactCell bundle:[NSBundle mainBundle]] forCellReuseIdentifier:contactCell];
 }
 
@@ -62,7 +65,43 @@ static NSString *contactCell = @"ContactTableViewCell";
     }
     People *contact = [_contactArray objectAtIndex:indexPath.row];
     [cell setContact:contact];
+//    if (_contactArray.count == 1) {
+//        cell.layer.cornerRadius = 10;
+//    } else {
+//        if (indexPath.row == _contactArray.count - 1) {
+//            UIBezierPath *maskPath = [UIBezierPath bezierPathWithRoundedRect:cell.bounds byRoundingCorners:UIRectCornerBottomLeft | UIRectCornerBottomRight cornerRadii:CGSizeMake(10, 10)];
+//            CAShapeLayer *maskLayer = [[CAShapeLayer alloc] init];
+//            maskLayer.frame = cell.bounds;
+//            maskLayer.path = maskPath.CGPath;
+//            cell.layer.mask = maskLayer;
+//        } else if (indexPath.row == 0) {
+//            UIBezierPath *maskPath = [UIBezierPath bezierPathWithRoundedRect:cell.bounds byRoundingCorners:UIRectCornerTopLeft | UIRectCornerTopRight cornerRadii:CGSizeMake(10, 10)];
+//            CAShapeLayer *maskLayer = [[CAShapeLayer alloc] init];
+//            maskLayer.frame = cell.bounds;
+//            maskLayer.path = maskPath.CGPath;
+//            cell.layer.mask = maskLayer;
+//        } else {
+//            cell.layer.cornerRadius = 0;
+//        }
+//    }
+//    cell.layer.masksToBounds = YES;
     return  cell;
+}
+
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+    return YES;
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        [_contactArray removeObjectAtIndex:indexPath.row];
+        [tableView reloadData];
+        //归档
+        NSArray *sandBox = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, 1, YES);
+        NSString *path = [sandBox firstObject];
+        NSString *docPath = [path stringByAppendingPathComponent:@"people.plist"];
+        [NSKeyedArchiver archiveRootObject:_contactArray toFile:docPath];
+    }
 }
 
 /*

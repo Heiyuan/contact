@@ -16,7 +16,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="小泉荣一郎" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q3L-SU-UCa">
-                        <rect key="frame" x="10" y="10" width="134" height="60"/>
+                        <rect key="frame" x="28" y="10" width="134" height="60"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="134" id="JrE-6o-XC7"/>
                         </constraints>
@@ -25,16 +25,16 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="18516572876" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zDP-rH-4j8">
-                        <rect key="frame" x="159" y="10" width="287" height="60"/>
+                        <rect key="frame" x="212" y="10" width="230" height="60"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="287" id="Sx3-5S-h1r"/>
+                            <constraint firstAttribute="width" constant="230" id="Sx3-5S-h1r"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="24"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5W0-Co-0TF">
-                        <rect key="frame" x="456" y="10" width="272" height="60"/>
+                        <rect key="frame" x="452" y="10" width="258" height="60"/>
                         <fontDescription key="fontDescription" type="system" pointSize="26"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
@@ -42,14 +42,14 @@
                 </subviews>
                 <constraints>
                     <constraint firstItem="5W0-Co-0TF" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="2" id="2oB-3N-lmi"/>
-                    <constraint firstItem="Q3L-SU-UCa" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="2" id="6aE-0g-WVH"/>
+                    <constraint firstItem="Q3L-SU-UCa" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="20" id="6aE-0g-WVH"/>
                     <constraint firstAttribute="bottomMargin" secondItem="5W0-Co-0TF" secondAttribute="bottom" constant="2" id="DHN-0A-Yk4"/>
                     <constraint firstAttribute="bottomMargin" secondItem="zDP-rH-4j8" secondAttribute="bottom" constant="2" id="IjJ-kN-47j"/>
                     <constraint firstAttribute="bottomMargin" secondItem="Q3L-SU-UCa" secondAttribute="bottom" constant="2" id="QYj-na-Ld6"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="5W0-Co-0TF" secondAttribute="trailing" constant="2" id="ahT-8S-IrU"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="5W0-Co-0TF" secondAttribute="trailing" constant="20" id="ahT-8S-IrU"/>
                     <constraint firstItem="Q3L-SU-UCa" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="2" id="eEF-re-zwe"/>
                     <constraint firstItem="zDP-rH-4j8" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="2" id="ipN-Js-vzC"/>
-                    <constraint firstItem="zDP-rH-4j8" firstAttribute="leading" secondItem="Q3L-SU-UCa" secondAttribute="trailing" constant="15" id="loK-hh-v63"/>
+                    <constraint firstItem="zDP-rH-4j8" firstAttribute="leading" secondItem="Q3L-SU-UCa" secondAttribute="trailing" constant="50" id="loK-hh-v63"/>
                     <constraint firstItem="5W0-Co-0TF" firstAttribute="leading" secondItem="zDP-rH-4j8" secondAttribute="trailing" constant="10" id="s9B-jS-D9a"/>
                 </constraints>
             </tableViewCellContentView>
@@ -58,7 +58,7 @@
                 <outlet property="phoneNumberLabel" destination="zDP-rH-4j8" id="SHU-cJ-KSA"/>
                 <outlet property="styleLabel" destination="5W0-Co-0TF" id="mLH-Rz-TEn"/>
             </connections>
-            <point key="canvasLocation" x="324" y="373.5"/>
+            <point key="canvasLocation" x="658" y="436.5"/>
         </tableViewCell>
     </objects>
 </document>

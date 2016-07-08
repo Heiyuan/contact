@@ -52,7 +52,7 @@
                 <constraint firstAttribute="trailing" secondItem="19A-fu-UZf" secondAttribute="trailing" id="pqG-jM-YK6"/>
             </constraints>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="iPad"/>
-            <point key="canvasLocation" x="382" y="404"/>
+            <point key="canvasLocation" x="543" y="379"/>
         </view>
     </objects>
     <resources>

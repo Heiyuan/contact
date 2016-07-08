@@ -11,7 +11,10 @@
                 <outlet property="buttonContact" destination="kWN-eg-pOB" id="ZRr-w3-Z6y"/>
                 <outlet property="buttonNew" destination="GXJ-oY-lT8" id="QXF-Rr-hWf"/>
                 <outlet property="buttonOld" destination="kJR-ys-BfK" id="ZsB-Qi-vg8"/>
+                <outlet property="doubleButtonBackView" destination="o9T-Xa-bBe" id="og6-6f-uFc"/>
+                <outlet property="nameBackView" destination="eZj-a4-5Ve" id="8RY-cR-uRy"/>
                 <outlet property="nameTextField" destination="OJZ-qA-aHB" id="5DA-9B-0Pk"/>
+                <outlet property="phoneBackView" destination="qEw-bk-Dq5" id="XqG-eq-8xE"/>
                 <outlet property="phoneTextField" destination="Of3-JM-l0i" id="vlm-Fo-zlG"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -72,7 +75,7 @@
                             <textInputTraits key="textInputTraits"/>
                         </textField>
                     </subviews>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstItem="OJZ-qA-aHB" firstAttribute="top" secondItem="eZj-a4-5Ve" secondAttribute="top" id="P4y-5v-083"/>
                         <constraint firstItem="A3z-p3-Bis" firstAttribute="top" secondItem="eZj-a4-5Ve" secondAttribute="top" constant="8" id="WkK-3t-wOB"/>
