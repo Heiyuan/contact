@@ -9,6 +9,7 @@
 #import "AddViewController.h"
 #import "IQKeyboardManager.h"
 #import "People.h"
+#import "ContactViewController.h"
 
 typedef NS_ENUM(NSUInteger, ShopStyle) {
     ShopStyleNew = 0,
@@ -22,6 +23,7 @@ typedef NS_ENUM(NSUInteger, ShopStyle) {
 @property (weak, nonatomic) IBOutlet UIButton *buttonNew;
 @property (weak, nonatomic) IBOutlet UIButton *buttonOld;
 @property (weak, nonatomic) IBOutlet UIButton *buttonConfirm;
+@property (weak, nonatomic) IBOutlet UIButton *buttonContact;
 @property (nonatomic, assign) ShopStyle shopStyle;
 
 @end
@@ -48,6 +50,7 @@ typedef NS_ENUM(NSUInteger, ShopStyle) {
     [_buttonOld addTarget:self action:@selector(buttonSelect:) forControlEvents:UIControlEventTouchUpInside];
     
     [_buttonConfirm addTarget:self action:@selector(confirmButtonSelect) forControlEvents:UIControlEventTouchUpInside];
+    [_buttonContact addTarget:self action:@selector(presentContactVC) forControlEvents:UIControlEventTouchUpInside];
     
 
     _shopStyle = ShopStyleNew;
@@ -104,8 +107,8 @@ typedef NS_ENUM(NSUInteger, ShopStyle) {
     
     //解档
     NSMutableArray *originArray = [NSMutableArray arrayWithArray:[NSKeyedUnarchiver unarchiveObjectWithFile:docPath]];
+    //写入新的
     [originArray addObject:people];
-    
     //归档
     [NSKeyedArchiver archiveRootObject:originArray toFile:docPath];
 }
@@ -126,6 +129,19 @@ typedef NS_ENUM(NSUInteger, ShopStyle) {
     } else {
         [self showAlertWithMessage:@"姓名和电话号码不能为空"];
     }
+}
+
+- (void)presentContactVC {
+    //解档
+    NSArray *sandBox = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, 1, YES);
+    NSString *path = [sandBox firstObject];
+    NSString *docPath = [path stringByAppendingPathComponent:@"people.plist"];
+    NSMutableArray *originArray = [NSMutableArray arrayWithArray:[NSKeyedUnarchiver unarchiveObjectWithFile:docPath]];
+    
+    ContactViewController *conVC = [[ContactViewController alloc] init];
+    conVC.contactArray = originArray;
+    [conVC setModalTransitionStyle:UIModalTransitionStylePartialCurl];
+    [self presentViewController:conVC animated:YES completion:nil];
 }
 
 #pragma mark - UITextFieldDelegate

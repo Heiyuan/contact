@@ -21,6 +21,7 @@
     AddViewController *addVC = [[AddViewController alloc] init];
     self.window.rootViewController = addVC;
     [self.window makeKeyAndVisible];
+    [[UIApplication sharedApplication] setIdleTimerDisabled:YES];
     return YES;
 }
 

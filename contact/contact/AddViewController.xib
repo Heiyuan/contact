@@ -8,6 +8,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AddViewController">
             <connections>
                 <outlet property="buttonConfirm" destination="Srt-Eo-HST" id="FA1-2C-FqJ"/>
+                <outlet property="buttonContact" destination="kWN-eg-pOB" id="ZRr-w3-Z6y"/>
                 <outlet property="buttonNew" destination="GXJ-oY-lT8" id="QXF-Rr-hWf"/>
                 <outlet property="buttonOld" destination="kJR-ys-BfK" id="ZsB-Qi-vg8"/>
                 <outlet property="nameTextField" destination="OJZ-qA-aHB" id="5DA-9B-0Pk"/>
@@ -127,12 +128,24 @@
                         <constraint firstItem="kJR-ys-BfK" firstAttribute="leading" secondItem="GXJ-oY-lT8" secondAttribute="trailing" id="xdc-EV-Vs1"/>
                     </constraints>
                 </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kWN-eg-pOB">
+                    <rect key="frame" x="678" y="20" width="82" height="48"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="82" id="19g-vk-JD1"/>
+                        <constraint firstAttribute="height" constant="48" id="F9v-uI-Prh"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="26"/>
+                    <state key="normal">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="o9T-Xa-bBe" secondAttribute="trailing" constant="125" id="6Bh-4p-qBa"/>
                 <constraint firstItem="o9T-Xa-bBe" firstAttribute="top" secondItem="qEw-bk-Dq5" secondAttribute="bottom" constant="18" id="7Gt-uA-MbF"/>
                 <constraint firstItem="Srt-Eo-HST" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="125" id="FKC-IG-gKw"/>
+                <constraint firstItem="kWN-eg-pOB" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="20" id="HmS-83-1Dt"/>
                 <constraint firstItem="o9T-Xa-bBe" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="125" id="Lni-uv-VaP"/>
                 <constraint firstItem="qEw-bk-Dq5" firstAttribute="top" secondItem="eZj-a4-5Ve" secondAttribute="bottom" constant="18" id="XeW-vu-Egd"/>
                 <constraint firstAttribute="bottom" secondItem="Srt-Eo-HST" secondAttribute="bottom" constant="44" id="Yg6-eX-xYQ"/>
@@ -141,6 +154,7 @@
                 <constraint firstAttribute="trailing" secondItem="Srt-Eo-HST" secondAttribute="trailing" constant="125" id="mof-1d-O4l"/>
                 <constraint firstItem="Srt-Eo-HST" firstAttribute="top" secondItem="o9T-Xa-bBe" secondAttribute="bottom" constant="154" id="ohn-6m-I4B"/>
                 <constraint firstAttribute="trailing" secondItem="qEw-bk-Dq5" secondAttribute="trailing" constant="125" id="rOo-Gq-PgK"/>
+                <constraint firstAttribute="trailing" secondItem="kWN-eg-pOB" secondAttribute="trailing" constant="8" id="rko-yr-5KV"/>
                 <constraint firstItem="qEw-bk-Dq5" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="125" id="yJG-Er-WV5"/>
             </constraints>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="iPad"/>

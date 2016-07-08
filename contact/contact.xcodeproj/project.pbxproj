@@ -25,6 +25,10 @@
 		92F1E3FC1D2F39E200D8AB12 /* IQToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 92F1E3EA1D2F39E200D8AB12 /* IQToolbar.m */; };
 		92F1E3FD1D2F39E200D8AB12 /* IQUIView+IQKeyboardToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 92F1E3EC1D2F39E200D8AB12 /* IQUIView+IQKeyboardToolbar.m */; };
 		92F1E3FE1D2F39E200D8AB12 /* IQKeyboardManager.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 92F1E3EF1D2F39E200D8AB12 /* IQKeyboardManager.bundle */; };
+		92F1E4021D2F4B0800D8AB12 /* ContactViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92F1E4001D2F4B0800D8AB12 /* ContactViewController.m */; };
+		92F1E4031D2F4B0800D8AB12 /* ContactViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 92F1E4011D2F4B0800D8AB12 /* ContactViewController.xib */; };
+		92F1E4071D2F55D200D8AB12 /* ContactTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 92F1E4051D2F55D200D8AB12 /* ContactTableViewCell.m */; };
+		92F1E4081D2F55D200D8AB12 /* ContactTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 92F1E4061D2F55D200D8AB12 /* ContactTableViewCell.xib */; };
 		B1D545EA1D2F28DF000143C0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B1D545E91D2F28DF000143C0 /* main.m */; };
 		B1D545ED1D2F28DF000143C0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B1D545EC1D2F28DF000143C0 /* AppDelegate.m */; };
 		B1D545F01D2F28DF000143C0 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B1D545EF1D2F28DF000143C0 /* ViewController.m */; };
@@ -90,6 +94,12 @@
 		92F1E3EC1D2F39E200D8AB12 /* IQUIView+IQKeyboardToolbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "IQUIView+IQKeyboardToolbar.m"; sourceTree = "<group>"; };
 		92F1E3ED1D2F39E200D8AB12 /* KeyboardManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeyboardManager.h; sourceTree = "<group>"; };
 		92F1E3EF1D2F39E200D8AB12 /* IQKeyboardManager.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = IQKeyboardManager.bundle; sourceTree = "<group>"; };
+		92F1E3FF1D2F4B0800D8AB12 /* ContactViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactViewController.h; sourceTree = "<group>"; };
+		92F1E4001D2F4B0800D8AB12 /* ContactViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactViewController.m; sourceTree = "<group>"; };
+		92F1E4011D2F4B0800D8AB12 /* ContactViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContactViewController.xib; sourceTree = "<group>"; };
+		92F1E4041D2F55D200D8AB12 /* ContactTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactTableViewCell.h; sourceTree = "<group>"; };
+		92F1E4051D2F55D200D8AB12 /* ContactTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactTableViewCell.m; sourceTree = "<group>"; };
+		92F1E4061D2F55D200D8AB12 /* ContactTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContactTableViewCell.xib; sourceTree = "<group>"; };
 		B1D545E51D2F28DF000143C0 /* contact.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = contact.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B1D545E91D2F28DF000143C0 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		B1D545EB1D2F28DF000143C0 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -252,6 +262,12 @@
 				92F1E3C51D2F2F0000D8AB12 /* AddViewController.h */,
 				92F1E3C61D2F2F0000D8AB12 /* AddViewController.m */,
 				92F1E3C71D2F2F0000D8AB12 /* AddViewController.xib */,
+				92F1E3FF1D2F4B0800D8AB12 /* ContactViewController.h */,
+				92F1E4001D2F4B0800D8AB12 /* ContactViewController.m */,
+				92F1E4011D2F4B0800D8AB12 /* ContactViewController.xib */,
+				92F1E4041D2F55D200D8AB12 /* ContactTableViewCell.h */,
+				92F1E4051D2F55D200D8AB12 /* ContactTableViewCell.m */,
+				92F1E4061D2F55D200D8AB12 /* ContactTableViewCell.xib */,
 				B1D5461B1D2F28FD000143C0 /* People.h */,
 				B1D5461C1D2F28FD000143C0 /* People.m */,
 				92F1E3CA1D2F39E200D8AB12 /* IQKeyboardManager */,
@@ -394,12 +410,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				92F1E4081D2F55D200D8AB12 /* ContactTableViewCell.xib in Resources */,
 				B1D545F81D2F28DF000143C0 /* LaunchScreen.storyboard in Resources */,
 				92F1E3C41D2F2E9200D8AB12 /* bj.png in Resources */,
 				92F1E3FE1D2F39E200D8AB12 /* IQKeyboardManager.bundle in Resources */,
 				92F1E3C91D2F2F0000D8AB12 /* AddViewController.xib in Resources */,
 				B1D545F51D2F28DF000143C0 /* Assets.xcassets in Resources */,
 				B1D545F31D2F28DF000143C0 /* Main.storyboard in Resources */,
+				92F1E4031D2F4B0800D8AB12 /* ContactViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -426,9 +444,11 @@
 			files = (
 				92F1E3FA1D2F39E200D8AB12 /* IQPreviousNextView.m in Sources */,
 				92F1E3F61D2F39E200D8AB12 /* IQKeyboardManager.m in Sources */,
+				92F1E4071D2F55D200D8AB12 /* ContactTableViewCell.m in Sources */,
 				92F1E3F01D2F39E200D8AB12 /* IQNSArray+Sort.m in Sources */,
 				92F1E3C81D2F2F0000D8AB12 /* AddViewController.m in Sources */,
 				92F1E3F11D2F39E200D8AB12 /* IQUIScrollView+Additions.m in Sources */,
+				92F1E4021D2F4B0800D8AB12 /* ContactViewController.m in Sources */,
 				92F1E3FC1D2F39E200D8AB12 /* IQToolbar.m in Sources */,
 				92F1E3F51D2F39E200D8AB12 /* IQUIWindow+Hierarchy.m in Sources */,
 				B1D5461D1D2F28FD000143C0 /* People.m in Sources */,
