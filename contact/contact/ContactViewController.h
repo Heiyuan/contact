@@ -11,5 +11,6 @@
 @interface ContactViewController : UIViewController
 
 @property (nonatomic, strong) NSMutableArray *contactArray;
+@property (nonatomic, strong) UIImage *backImage;
 
 @end

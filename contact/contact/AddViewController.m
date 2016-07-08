@@ -162,9 +162,19 @@ typedef NS_ENUM(NSUInteger, ShopStyle) {
     NSMutableArray *originArray = [NSMutableArray arrayWithArray:[NSKeyedUnarchiver unarchiveObjectWithFile:docPath]];
     //跳转
     ContactViewController *conVC = [[ContactViewController alloc] init];
+    conVC.backImage = [self ScreenShotsImage:self.view];
     conVC.contactArray = originArray;
     [conVC setModalTransitionStyle:UIModalTransitionStylePartialCurl];
-    [self presentViewController:conVC animated:YES completion:nil];
+    [self presentViewController:conVC animated:NO completion:nil];
+}
+
+//MARK:获得屏幕图像截图
+- (UIImage *)ScreenShotsImage:(UIView*)view{
+    UIGraphicsBeginImageContextWithOptions(view.frame.size, NO, 0);
+    [[view layer] renderInContext:UIGraphicsGetCurrentContext()];
+    UIImage *theImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return theImage;
 }
 
 - (void)didReceiveMemoryWarning {

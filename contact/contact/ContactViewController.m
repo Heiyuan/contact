@@ -9,13 +9,16 @@
 #import "ContactViewController.h"
 #import "People.h"
 #import "ContactTableViewCell.h"
+#import <pop/POP.h>
 
 static NSString *contactCell = @"ContactTableViewCell";
 
 @interface ContactViewController () <UITableViewDelegate, UITableViewDataSource>
 
+@property (weak, nonatomic) IBOutlet UIImageView *bgImageView;
 @property (weak, nonatomic) IBOutlet UIButton *buttonReturn;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) IBOutlet UIView *mainView;
 
 @end
 
@@ -35,15 +38,43 @@ static NSString *contactCell = @"ContactTableViewCell";
     _tableView.layer.masksToBounds = YES;
     _tableView.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:0.5];
     [_tableView registerNib:[UINib nibWithNibName:contactCell bundle:[NSBundle mainBundle]] forCellReuseIdentifier:contactCell];
+    _mainView.alpha = 0;
+    _bgImageView.image = _backImage;
 }
 
 - (void)dissMissVC {
-    [self dismissViewControllerAnimated:YES completion:nil];
+    __weak __typeof(self)weakSelf = self;
+    POPBasicAnimation *mainAnimation = [POPBasicAnimation animationWithPropertyNamed:kPOPViewAlpha];
+    mainAnimation.toValue = @0.f;
+    mainAnimation.duration = 0.6f;
+    [_mainView pop_addAnimation:mainAnimation forKey:nil];
+    
+    POPBasicAnimation *backAnimation = [POPBasicAnimation animationWithPropertyNamed:kPOPViewAlpha];
+    backAnimation.toValue = @1.f;
+    backAnimation.duration = 0.6f;
+    [_bgImageView pop_addAnimation:backAnimation forKey:nil];
+    [backAnimation setCompletionBlock:^(POPAnimation *aa, BOOL finish) {
+        [weakSelf dismissViewControllerAnimated:YES completion:nil];
+    }];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    POPBasicAnimation *mainAnimation = [POPBasicAnimation animationWithPropertyNamed:kPOPViewAlpha];
+    mainAnimation.toValue = @1.f;
+    mainAnimation.duration = 0.6f;
+    [_mainView pop_addAnimation:mainAnimation forKey:nil];
+    
+    POPBasicAnimation *backAnimation = [POPBasicAnimation animationWithPropertyNamed:kPOPViewAlpha];
+    backAnimation.fromValue = @1.0f;
+    backAnimation.toValue = @0.f;
+    backAnimation.duration = 0.6f;
+    [_bgImageView pop_addAnimation:backAnimation forKey:nil];
 }
 
 #pragma mark - UITableViewDelegate
